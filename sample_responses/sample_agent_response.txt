@@ -1,0 +1,39 @@
+{'messages': 
+    [
+        HumanMessage(
+        content='How is the weather in Santiago de Chile?', 
+        additional_kwargs={}, 
+        response_metadata={}, 
+        id='6bc17773-7400-4ac0-a80d-51377759959d'), 
+        
+        AIMessage(
+        content='', 
+        additional_kwargs={
+            'function_call': {
+                'name': 'get_weather', 
+                'arguments': '{"city": "Santiago de Chile"}'}, '__gemini_function_call_thought_signatures__': {'956bfdb5-1b20-4284-9eb8-8099189f7d44': 'CuYBAQw51scW6s8BaQZmDRRMBzUfJEJeAya2O9AzMBa8gqqFvHLdjZZWZ3ZwzOpkw1toDAe8z7P965f/2tjU5/LJMSv+gukkWFqHwMzuH+wf/wUn81EWODgsZkGqH8oje6huP4WRb+5MTvhjeJ8NenhmqEkaXeFPN6w3aG3qidS0oL+YsyXOodEdKf/e3hhvn5Ve/y/Er+/BDDJRb1VB0n8O8BU+E5SWfdmBSX+kn1d0UM6a8TJcXc4qj1+zGazMLWIfOSoNJ2qpWe5Y0CKDK9HIV9nlkHE3ZM2pIr/NpFMIzmcRhyqIdJA='}
+            }, 
+        response_metadata={
+                'finish_reason': 'STOP', 
+                'model_name': 'gemini-2.5-flash', 
+                'safety_ratings': [], 
+                'model_provider': 'google_genai'
+            }, 
+        id='lc_run--019e2c1d-c7c0-7581-9679-56285d8ab632-0', 
+        tool_calls=[{'name': 'get_weather', 'args': {'city': 'Santiago de Chile'}, 'id': '956bfdb5-1b20-4284-9eb8-8099189f7d44', 'type': 'tool_call'}], 
+        invalid_tool_calls=[], 
+        usage_metadata={'input_tokens': 49, 'output_tokens': 65, 'total_tokens': 114, 'input_token_details': {'cache_read': 0}, 'output_token_details': {'reasoning': 48}}),
+        
+        ToolMessage(
+        content='sunny', name='get_weather', id='243c957e-fcfc-4c75-aead-82f98e5b2ea1', tool_call_id='956bfdb5-1b20-4284-9eb8-8099189f7d44'), 
+        
+        AIMessage(
+        content='The weather in Santiago de Chile is sunny.', 
+        additional_kwargs={}, 
+        response_metadata={'finish_reason': 'STOP', 'model_name': 'gemini-2.5-flash', 'safety_ratings': [], 'model_provider': 'google_genai'},
+        id='lc_run--019e2c1d-cf94-77d1-9054-d317320e7006-0', 
+        tool_calls=[], 
+        invalid_tool_calls=[], 
+        usage_metadata={'input_tokens': 81, 'output_tokens': 9, 'total_tokens': 90, 'input_token_details': {'cache_read': 0}})
+    ]
+}

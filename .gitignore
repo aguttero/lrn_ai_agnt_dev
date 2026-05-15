@@ -7,10 +7,14 @@ wheels/
 *.egg-info
 
 # Virtual environments
-.venv
+.venv/
 
 # env and credentials
 .env
+
+# Logs and Data
+data/
+log*/
 
 
 
