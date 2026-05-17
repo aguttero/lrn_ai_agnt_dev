@@ -1,0 +1,9 @@
+langchain
+langchain-google-genai
+langgraph
+psycopg
+psycopg-binary
+python-dotenv
+requests
+langgraph-checkpoint-postgres
+langgraph-checkpoint-sqlite
