@@ -30,7 +30,6 @@ def get_weather(city: str):
     #         "temperature_celcius": 25,
     #         "rain forecast": 0.90}
 
-
 def get_location() -> dict:
     """Returns user location: City Name and Country ISO code in a dictionary with the user loccation""" # AI Agent reads the function information to decide if it is useful
     return {"city": "Buenos Aires",
@@ -66,45 +65,34 @@ agent = create_agent(
 # Agent Input format: Dictionary
 # Agent Output: Dictionary {"messages": [HumanMessage object(), AiMessage object()]} 
 
-
 def show_api_key():
     print(f"GOOGLE_API KEY={GOOGLE_API_KEY}")
     return GOOGLE_API_KEY
 
-
 def main():
-    print("Hello from lrn-ai-agnt-dev!")
-    print(".env data:", show_api_key())
-    print ("- - - -")
-    
-    # Query 1
-    user_query_1 = input("Enter your query: ")
-    agent_prompt = {
-        "messages":[
-            {"role": "user",
-             "content": user_query_1
-             }
-        ]
-    } 
-    response1 = agent.invoke (agent_prompt, {"configurable": {"thread_id": "1"}})
-    print(response1["messages"][-1].content)
+    print(".env data acces check:", show_api_key())
     print ("- - - -")
 
-    # Query 2
-    user_query_2 = input("Enter your query: ")
-    agent_prompt = {
-        "messages":[
-            {"role": "user",
-             "content": user_query_2
-             }
-        ]
-    } 
-    response2 = agent.invoke (agent_prompt, {"configurable": {"thread_id": "1"}})
-    print(response2["messages"][-1].content)
-    print ("- - - -")
-    
+    while True:    
+        user_query_1 = input("Enter your query: ")
+        if user_query_1 in ['bye','quit','exit']:
+            break
+
+        agent_prompt = {
+            "messages":[
+                {"role": "user",
+                "content": user_query_1
+                }
+            ]
+        } 
+        response1 = agent.invoke (agent_prompt, {"configurable": {"thread_id": "1"}})
+        print(response1["messages"][-1].content)
+        print ("- - - -")
 
     print ("- - END - - ")
+    return 0
 
 if __name__ == "__main__":
-    main()
+    exit_code: int = main()
+    print (f"exit code: {exit_code}")
+    exit(exit_code)

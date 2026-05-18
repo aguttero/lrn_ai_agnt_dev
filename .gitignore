@@ -16,5 +16,8 @@ wheels/
 data/
 log*/
 
+# OS
+.DS_Store
+
 
 

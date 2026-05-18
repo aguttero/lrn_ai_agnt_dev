@@ -8,11 +8,12 @@ https://www.udemy.com/course/ai-developer-bootcamp/
 * see code `a_basic_LLM_call.py`
 * see code `a_basic_agnt_call.py`
 
-# memory
+# memory db
 ## modules
 * import InMemorySaver permite al agente crear la 'memoria'
 * modulo langraph.checkpoint.memory 
 * see code `agent_memory_db.py`
+* sql memory see `sec5_main_sqlite.py`
 
 ## code
 * agent.invoke {"configurable":{"thread_id":"n"}} es lo que identifica el thread para la memoria
