@@ -19,3 +19,12 @@ https://www.udemy.com/course/ai-developer-bootcamp/
 * agent.invoke {"configurable":{"thread_id":"n"}} es lo que identifica el thread para la memoria
 * thread_id gets associated with each user in your app to have a memory for each conversation
 
+## Supabase - Postgre SQL
+* langchain uses connection string to DBs (Disable DATA API)
+* define hosting region: Choose the same as the hosting region for the app
+
+### Connection
+* Direct
+* Type: URI
+* Copy the connection string -> ".env" file SUPABASE_DB_URI = postgresql://postgres:[YOUR-PASSWORD]@db.....
+
