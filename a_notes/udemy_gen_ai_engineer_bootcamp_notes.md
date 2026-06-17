@@ -23,8 +23,7 @@ https://www.udemy.com/course/ai-developer-bootcamp/
 * langchain uses connection string to DBs (Disable DATA API)
 * define hosting region: Choose the same as the hosting region for the app
 
-### Connection
+### Connection -> Connect button in settings (Top part of screen)
 * Direct
 * Type: URI
 * Copy the connection string -> ".env" file SUPABASE_DB_URI = postgresql://postgres:[YOUR-PASSWORD]@db.....
-
