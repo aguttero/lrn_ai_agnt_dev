@@ -27,3 +27,23 @@ https://www.udemy.com/course/ai-developer-bootcamp/
 * Direct
 * Type: URI
 * Copy the connection string -> ".env" file SUPABASE_DB_URI = postgresql://postgres:[YOUR-PASSWORD]@db.....
+
+# Self Hostable Models
+## Good por laptop
+### Meta 3 Series
+* Llama 3.2
+* Llama 3.3 70B
+
+### Gemini
+* Gemma 3
+
+## Good for Coding
+* Qwen3 Series -> Coding
+* DeepSeek Series -> reasoning
+* Mistral 7B -> Balanced
+
+## ollama python setup
+
+* ollama api: localhost:11434
+* bash: ollama serve
+* library: langchain + langchain-ollama
