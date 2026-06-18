@@ -11,13 +11,21 @@ wheels/
 
 # env and credentials
 .env
+client_secret/
+secret/
+secrets/
 
 # Logs and Data
 data/
 log*/
+*.db
 
 # OS
 .DS_Store
 
-
-
+# images and PDFs
+images/
+*.png
+*.jpg
+*.svg
+*.pdf
