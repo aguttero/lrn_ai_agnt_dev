@@ -8,6 +8,12 @@ https://www.udemy.com/course/ai-developer-bootcamp/
 * see code `a_basic_LLM_call.py`
 * see code `a_basic_agnt_call.py`
 
+# LLM API
+## Gemini
+https://aistudio.google.com/api-keys
+
+
+
 # memory db
 ## modules
 * import InMemorySaver permite al agente crear la 'memoria'

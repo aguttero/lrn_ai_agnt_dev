@@ -15,7 +15,7 @@ class Recipe(BaseModel):
     prep_time: str = Field(description="Estimated recipe preparation time")
 
 
-class Respose(BaseModel):
+class Response(BaseModel):
     """A single recipe"""
 
     ingredients: List[str] = Field(description="List of main ingredients")
@@ -26,7 +26,7 @@ class Respose(BaseModel):
 model = init_chat_model(
     "gemini-2.5-flash", model_provider="google_genai", api_key=GOOGLE_API_KEY
 )
-structured_model = model.with_structured_output(Respose)
+structured_model = model.with_structured_output(Response)
 system_prompt = """
 You are a helpful chef. Identify the main ingredients. Suggest 3 recipes based on these """
 
