@@ -16,4 +16,6 @@ dependencies = [
     "psycopg-binary>=3.3.4",
     "python-dotenv>=1.2.2",
     "requests>=2.34.1",
+    "sounddevice>=0.5.5",
+    "soundfile>=0.14.0",
 ]
