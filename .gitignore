@@ -23,9 +23,13 @@ log*/
 # OS
 .DS_Store
 
-# images and PDFs
+# images and PDFs and audio
 images/
 *.png
 *.jpg
 *.svg
 *.pdf
+*.wav
+
+# tmp files
+tmp/
