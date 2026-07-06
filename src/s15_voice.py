@@ -40,15 +40,19 @@ def record_audio() -> str:
 def upload_audio_file(local_audio_path: str):
     """Upload audio file to temp Google Cloud Storage"""
     print("Uploading local file to temporary Gemini File API...")
-    gcs_audio = client.files.upload(file=local_audio_path)
-    print(f"Uploaded successfully. File URI: {gcs_audio.uri}")
+    gcs_audio_file = client.files.upload(file=local_audio_path)
+    print(f"Uploaded successfully. File URI: {gcs_audio_file.uri}")
+
+    # File state check
+    print(f"audio_file state status= {gcs_audio_file.state.name}")
 
     # Wait for processing if the file is very large
-    while gcs_audio.state.name == "PROCESSING":
+    while gcs_audio_file.state.name == "PROCESSING":
         print("Waiting for file processing...")
         time.sleep(2)
-        gcs_audio = client.files.get(name=gcs_audio.name)
-    return gcs_audio
+        gcs_audio_file = client.files.get(name=gcs_audio_file.name)
+
+    return gcs_audio_file
 
 def transcribe (audio_path: str)
     """Send audio to Gemini API and return the transcript."""
@@ -59,9 +63,20 @@ def transcribe (audio_path: str)
             response_format="text",
         )
 
+## ZAG - WIP
+def delete_gcs_file(gcs_tmp_file_path):
+    client.files.delete(name=gcs_tmp_file_path.name)
+    print (f"gcs file status= {}")
 
-tmp_audio_path = record_audio()
-print("TMP audio file created:", tmp_audio_path)
 
-transcribe(tmp_audio_path)
-print("TMP audio file transcribed:", tmp_audio_path)
+def main ():
+
+    # Record Audio
+    tmp_audio_path = record_audio()
+    print("TMP audio file created:", tmp_audio_path)
+
+    # Upload audio to tmp GCS file
+    gcs_file = upload_audio_file(tmp_audio_path)
+
+    transcribe(gcs_file)
+    print("TMP audio file transcribed:", tmp_audio_path)
