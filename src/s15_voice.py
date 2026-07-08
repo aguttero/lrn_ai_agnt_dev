@@ -1,10 +1,10 @@
 import tempfile
 import time
+
 import sounddevice as sd
 import soundfile as sf
-from google import genai
 from dotenv import dotenv_values
-
+from google import genai
 
 SAMPLE_RATE = 16000
 MAX_DURATION = 10  # duration in seconds
@@ -12,7 +12,8 @@ MAX_DURATION = 10  # duration in seconds
 config = dotenv_values(".env")
 GOOGLE_API_KEY = config.get("GOOGLE_API_KEY")
 
-client = genai.Client()
+client = genai.Client(api_key=GOOGLE_API_KEY)
+
 
 def record_audio() -> str:
     """Record from microphone, return path to temp WAV file."""
@@ -35,13 +36,14 @@ def record_audio() -> str:
     print(f"Saved audio to {tmp.name} successfully!")
     return tmp.name
 
+
 # --- Upload to GCS
 # Supported audio formats include: audio/mp3, audio/wav, audio/m4a, audio/flac
 def upload_audio_file(local_audio_path: str):
     """Upload audio file to temp Google Cloud Storage"""
     print("Uploading local file to temporary Gemini File API...")
     gcs_audio_file = client.files.upload(file=local_audio_path)
-    print(f"Uploaded successfully. File URI: {gcs_audio_file.uri}")
+    print(f"Uploaded successfully. File URI:\n{gcs_audio_file.uri}")
 
     # File state check
     print(f"audio_file state status= {gcs_audio_file.state.name}")
@@ -54,29 +56,44 @@ def upload_audio_file(local_audio_path: str):
 
     return gcs_audio_file
 
-def transcribe (audio_path: str)
+
+def transcribe(gcs_audio_file: str):
     """Send audio to Gemini API and return the transcript."""
-    with open(audio_path, "rb") as f:
-        return client.audio.transcriptions.create(
-            model="whisper-1",
-            file=f,
-            response_format="text",
-        )
+    response = client.models.generate_content(
+        model="gemini-2.5-flash-lite",
+        contents=[gcs_audio_file, "Provide a complete transcript of this audio file."],
+    )
+    print(response.text)
+
 
 ## ZAG - WIP
 def delete_gcs_file(gcs_tmp_file_path):
     client.files.delete(name=gcs_tmp_file_path.name)
-    print (f"gcs file status= {}")
+    print("File deleted from GCS")
+    print(f"gcs file status= {gcs_tmp_file_path.state.name}")
 
 
-def main ():
+def main():
 
     # Record Audio
-    tmp_audio_path = record_audio()
-    print("TMP audio file created:", tmp_audio_path)
+    # tmp_audio_path = record_audio()
+    # print("TMP audio file created:", tmp_audio_path)
+
+    tmp_audio_path = "tmp/tmppjxarxf5.wav"
 
     # Upload audio to tmp GCS file
     gcs_file = upload_audio_file(tmp_audio_path)
 
+    # Transcribe
     transcribe(gcs_file)
     print("TMP audio file transcribed:", tmp_audio_path)
+
+    # Delte GCS file
+    delete_gcs_file(gcs_file)
+
+    return 0
+
+
+if __name__ == "__main__":
+    exit_code = main()
+    print(f"exit code: {exit_code}")
