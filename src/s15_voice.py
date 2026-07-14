@@ -66,7 +66,6 @@ def transcribe(gcs_audio_file: str):
     print(response.text)
 
 
-## ZAG - WIP
 def delete_gcs_file(gcs_tmp_file_path):
     client.files.delete(name=gcs_tmp_file_path.name)
     print("File deleted from GCS")
